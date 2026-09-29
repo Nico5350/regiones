@@ -2,9 +2,10 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Grafo {
-    // Integer es el vértice destino, Double es el peso de la arista.
+    // Integer es el vértice destino, Double es el peso de la arista
     private ArrayList<HashMap<Integer, Double>> vecinos;
 
     public Grafo(int n) {
@@ -33,16 +34,33 @@ public class Grafo {
 
     public boolean existeArista(int i, int j) {
         verificarVertice(i);
-        // Retorna si existe la arista
         return vecinos.get(i).containsKey(j); 
     }
     
     public double obtenerPeso(int i, int j) {
         verificarVertice(i);
         if (!existeArista(i, j)) {
-            throw new IllegalArgumentException("La arista no existe.");
+            throw new IllegalArgumentException("La arista no existe entre " + i + " y " + j);
         }
         return vecinos.get(i).get(j);
+    }
+
+    public int cantidadVertices() {
+        return vecinos.size();
+    }
+
+    public Set<Integer> obtenerVecinos(int i) {
+        verificarVertice(i);
+        return vecinos.get(i).keySet();
+    }
+
+    public void eliminarArista(int i, int j) {
+        verificarVertice(i);
+        verificarVertice(j);
+
+        // Se elimina la conexión en ambas direcciones
+        vecinos.get(i).remove(j);
+        vecinos.get(j).remove(i);
     }
 
     private void verificarVertice(int i) {

@@ -30,8 +30,6 @@ public class AlgoritmoRegionesTest {
         
         //Deberíamos obtener 2 regiones
         assertEquals(2, regiones.size());
-        
-        // La arista de peso 10.0 debió ser eliminada, separando al vértice 3
         boolean contieneRegionAislada = false;
         for (Set<Integer> region : regiones) {
             if (region.size() == 1 && region.contains(3)) {
@@ -39,5 +37,17 @@ public class AlgoritmoRegionesTest {
             }
         }
         assertTrue("El vértice 3 debería haber quedado en una región separada", contieneRegionAislada);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testDividirEnRegionesInvalidas() {
+        algoritmo.calcularRegiones(0); 
+    }
+
+    @Test
+    public void testDividirEnUnaSolaRegion() {
+        // Testeamos un caso de borde
+        List<Set<Integer>> regiones = algoritmo.calcularRegiones(1);
+        assertEquals(1, regiones.size());
+        assertEquals(4, regiones.get(0).size());
     }
 }

@@ -24,14 +24,12 @@ public class UnionFind {
     public boolean find(int i, int j) {
         return root(i) == root(j);
     }
-
-    // La única operación que modifica la estructura es la unión
     public void union(int i, int j) {
         int rootI = root(i);
         int rootJ = root(j);
 
         if (rootI == rootJ) {
-            return; // Ya están en la misma componente
+            return; //misma componente
         }
 
         // Hacemos que la raíz del menor árbol apunte a la raíz del mayor
