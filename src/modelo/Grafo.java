@@ -34,6 +34,7 @@ public class Grafo {
 
     public boolean existeArista(int i, int j) {
         verificarVertice(i);
+        verificarVertice(j);
         return vecinos.get(i).containsKey(j); 
     }
     
@@ -51,7 +52,7 @@ public class Grafo {
 
     public Set<Integer> obtenerVecinos(int i) {
         verificarVertice(i);
-        return vecinos.get(i).keySet();
+        return java.util.Collections.unmodifiableSet(vecinos.get(i).keySet());
     }
 
     public void eliminarArista(int i, int j) {

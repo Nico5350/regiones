@@ -11,15 +11,16 @@ public class AlgoritmoRegiones {
     }
 
     public List<Set<Integer>> calcularRegiones(int k) {
-        if (k <= 0) throw new IllegalArgumentException("k debe ser mayor a 0.");
+        int n = grafoOriginal.cantidadVertices();
+        if (k <= 0 || k > n) {
+            throw new IllegalArgumentException("k debe estar entre 1 y " + n);
+        }
+        if (obtenerComponentesConexas(grafoOriginal).size() > 1) {
+            throw new IllegalStateException("El grafo debe ser conexo para diseñar las regiones.");
+        }
 
-        // Construir el Árbol Generador Mínimo
         Grafo arbolMinimo = construirAGM();
-
-        // Elimina las k-1 aristas de mayor peso
         eliminarAristasMasPesadas(arbolMinimo, k - 1);
-
-        // Obtener las componentes conexas (Regiones)
         return obtenerComponentesConexas(arbolMinimo);
     }
 
@@ -33,9 +34,9 @@ public class AlgoritmoRegiones {
         
         // Algoritmo de Kruskal
         for (Arista e : todasLasAristas) {
-            if (!uf.find(e.origen, e.destino)) {
-                uf.union(e.origen, e.destino);
-                mst.agregarArista(e.origen, e.destino, e.peso);
+            if (!uf.find(e.getOrigen(), e.getDestino())) {
+                uf.union(e.getOrigen(), e.getDestino());
+                mst.agregarArista(e.getOrigen(), e.getDestino(), e.getPeso());
             }
         }
         return mst;
@@ -50,7 +51,7 @@ public class AlgoritmoRegiones {
         
         for (int i = 0; i < cantidadAEliminar && i < aristasMst.size(); i++) {
             Arista aEliminar = aristasMst.get(i);
-            mst.eliminarArista(aEliminar.origen, aEliminar.destino);
+            mst.eliminarArista(aEliminar.getOrigen(), aEliminar.getDestino());
         }
     }
 
