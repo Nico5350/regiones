@@ -1,23 +1,22 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
+import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
+import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
+import modelo.Arista;
 import modelo.Provincia;
 
 public class VistaPrincipal {
@@ -25,7 +24,6 @@ public class VistaPrincipal {
 	private JFrame frame;
 	private JPanel panelMapa;
 	private JMapViewer mapa;
-	private boolean seleccionandoProvincia;
 
 	public VistaPrincipal() {
 		initialize();
@@ -52,41 +50,6 @@ public class VistaPrincipal {
 		panelMapa.setLayout(null);
 		panelMapa.add(mapa);
 
-		JButton btnNewButton = new JButton("Cargar provincia");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				seleccionandoProvincia = true;
-				JOptionPane.showMessageDialog(frame, "Hacé clic en el mapa donde querés ubicar la provincia.");
-			}
-		});
-		btnNewButton.setBounds(568, 49, 154, 34);
-		frame.getContentPane().add(btnNewButton);
-
-		mapa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (!seleccionandoProvincia)
-					return;
-
-				ICoordinate coordenadaSeleccionada = mapa.getPosition(e.getPoint());
-
-				String nombre = JOptionPane.showInputDialog(frame, "Nombre de la provincia:");
-
-				if (nombre == null || nombre.trim().isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Nombre invalido, intentelo denuevo");
-					return;
-				}
-
-				MapMarker marker = new MapMarkerDot(nombre,
-						new Coordinate(coordenadaSeleccionada.getLat(), coordenadaSeleccionada.getLon()));
-				marker.getStyle().setBackColor(Color.yellow);
-				marker.getStyle().setColor(Color.black);
-
-				mapa.addMapMarker(marker);
-
-				seleccionandoProvincia = false;
-			}
-		});
 	}
 
 	private void initializeMap() {
@@ -96,50 +59,10 @@ public class VistaPrincipal {
 
 		Coordinate coordinate = new Coordinate(-39.84228602074339, -66.62109375);
 		mapa.setDisplayPosition(coordinate, 4);
-
-		/*
-		 * for (int i = 0; i < provincias.size(); i++) { Provincia provincia =
-		 * provincias.get(i); Coordinate coordProvincia = new
-		 * Coordinate(provincia.getLatitud(), provincia.getLongitud());
-		 * 
-		 * MapMarker provMarker = new MapMarkerDot("", coordProvincia);
-		 * provMarker.getStyle().setBackColor(Color.yellow);
-		 * provMarker.getStyle().setColor(Color.black);
-		 * 
-		 * mapa.addMapMarker(provMarker); }
-		 * 
-		 * 
-		 * 
-		 * for (int i = 0; i < grafo.cantidadVertices(); i++) {
-		 * 
-		 * Provincia origen = provincias.get(i);
-		 * 
-		 * for (int vecino : grafo.obtenerVecinos(i)) {
-		 * 
-		 * // Evita dibujar dos veces la misma arista if (i < vecino) {
-		 * 
-		 * Provincia destino = provincias.get(vecino);
-		 * 
-		 * Coordinate coordOrigen = new Coordinate( origen.getLatitud(),
-		 * origen.getLongitud() );
-		 * 
-		 * Coordinate coordDestino = new Coordinate( destino.getLatitud(),
-		 * destino.getLongitud() );
-		 * 
-		 * ArrayList<Coordinate> puntos = new ArrayList<>();
-		 * 
-		 * puntos.add(coordOrigen); puntos.add(coordDestino); puntos.add(coordOrigen);
-		 * 
-		 * MapPolygon arista = new MapPolygonImpl(puntos);
-		 * 
-		 * mapa.addMapPolygon(arista); } } }
-		 */
-
 	}
 
 	public void mostrarProvincias(List<Provincia> provincias) {
 		for (Provincia provincia : provincias) {
-			System.out.println(provincia.getNombre());
 
 			Coordinate coordenada = new Coordinate(provincia.getLatitud(), provincia.getLongitud());
 
@@ -150,5 +73,36 @@ public class VistaPrincipal {
 			mapa.addMapMarker(marker);
 		}
 
+	}
+
+	public void mostrarProvinciasLimitrofes(List<Provincia> provincias, List<Arista> aristas) {
+
+		Map<Integer, Provincia> provinciasPorId = new HashMap<>();
+
+		for (Provincia provincia : provincias) {
+			provinciasPorId.put(provincia.getId(), provincia);
+		}
+
+		for (Arista arista : aristas) {
+
+			Provincia origen = provinciasPorId.get(arista.getOrigen() + 1);
+			Provincia destino = provinciasPorId.get(arista.getDestino() + 1);
+
+			if (origen == null || destino == null) {
+				continue;
+			}
+
+			Coordinate punto1 = new Coordinate(origen.getLatitud(), origen.getLongitud());
+
+			Coordinate punto2 = new Coordinate(destino.getLatitud(), destino.getLongitud());
+			List<Coordinate> listaCoordenadas = new ArrayList<Coordinate>();
+			listaCoordenadas.add(punto1);
+			listaCoordenadas.add(punto2);
+			listaCoordenadas.add(punto1);
+
+			MapPolygon linea = new MapPolygonImpl(listaCoordenadas);
+
+			mapa.addMapPolygon(linea);
+		}
 	}
 }

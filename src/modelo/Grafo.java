@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Grafo {
@@ -68,5 +70,22 @@ public class Grafo {
         if (i < 0 || i >= vecinos.size()) {
             throw new IllegalArgumentException("Vértice " + i + " fuera de rango.");
         }
+    }
+    
+    public List<Arista> obtenerAristas() {
+        List<Arista> aristas = new ArrayList<>();
+
+        for (int i = 0; i < vecinos.size(); i++) {
+            for (Map.Entry<Integer, Double> vecino : vecinos.get(i).entrySet()) {
+                int j = vecino.getKey();
+
+                // Evita agregar dos veces la misma arista
+                if (i < j) {
+                    aristas.add(new Arista(i, j, vecino.getValue()));
+                }
+            }
+        }
+
+        return aristas;
     }
 }

@@ -92,6 +92,10 @@ public class Pais {
     public int cantidadProvincias() {
         return provincias.size();
     }
+    
+    public List<Arista> obtenerAristas() {
+        return grafo.obtenerAristas();
+    }
 
     public Provincia obtenerProvincia(int id) {
         if (id < 0 || id >= provincias.size()) {
