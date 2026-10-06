@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "nombre": "Buenos Aires",
+    "latitud": -36.6769,
+    "longitud": -60.5588
+  },
+  {
+    "id": 2,
+    "nombre": "Catamarca",
+    "latitud": -27.3358,
+    "longitud": -66.9478
+  },
+  {
+    "id": 3,
+    "nombre": "Chaco",
+    "latitud": -26.3864,
+    "longitud": -60.7658
+  },
+  {
+    "id": 4,
+    "nombre": "Chubut",
+    "latitud": -43.7887,
+    "longitud": -68.5262
+  },
+  {
+    "id": 5,
+    "nombre": "Córdoba",
+    "latitud": -32.1429,
+    "longitud": -63.8017
+  },
+  {
+    "id": 6,
+    "nombre": "Corrientes",
+    "latitud": -28.7746,
+    "longitud": -57.8016
+  },
+  {
+    "id": 7,
+    "nombre": "Entre Ríos",
+    "latitud": -31.9554,
+    "longitud": -59.0565
+  },
+  {
+    "id": 8,
+    "nombre": "Formosa",
+    "latitud": -24.8956,
+    "longitud": -59.9328
+  },
+  {
+    "id": 9,
+    "nombre": "Jujuy",
+    "latitud": -23.7467,
+    "longitud": -65.7086
+  },
+  {
+    "id": 10,
+    "nombre": "La Pampa",
+    "latitud": -37.1315,
+    "longitud": -65.4489
+  },
+  {
+    "id": 11,
+    "nombre": "La Rioja",
+    "latitud": -29.4933,
+    "longitud": -67.1095
+  },
+  {
+    "id": 12,
+    "nombre": "Mendoza",
+    "latitud": -34.6345,
+    "longitud": -68.5831
+  },
+  {
+    "id": 13,
+    "nombre": "Misiones",
+    "latitud": -26.9054,
+    "longitud": -54.7637
+  },
+  {
+    "id": 14,
+    "nombre": "Neuquén",
+    "latitud": -38.9525,
+    "longitud": -69.9864
+  },
+  {
+    "id": 15,
+    "nombre": "Río Negro",
+    "latitud": -40.4800,
+    "longitud": -67.6147
+  },
+  {
+    "id": 16,
+    "nombre": "Salta",
+    "latitud": -24.7716,
+    "longitud": -65.3976
+  },
+  {
+    "id": 17,
+    "nombre": "San Juan",
+    "latitud": -30.8667,
+    "longitud": -68.8897
+  },
+  {
+    "id": 18,
+    "nombre": "San Luis",
+    "latitud": -33.7570,
+    "longitud": -66.0280
+  },
+  {
+    "id": 19,
+    "nombre": "Santa Cruz",
+    "latitud": -48.8156,
+    "longitud": -69.9558
+  },
+  {
+    "id": 20,
+    "nombre": "Santa Fe",
+    "latitud": -30.7069,
+    "longitud": -60.9497
+  },
+  {
+    "id": 21,
+    "nombre": "Santiago del Estero",
+    "latitud": -27.7824,
+    "longitud": -63.2528
+  },
+  {
+    "id": 22,
+    "nombre": "Tierra del Fuego",
+    "latitud": -54.4258,
+    "longitud": -67.5460
+  },
+  {
+    "id": 23,
+    "nombre": "Tucumán",
+    "latitud": -26.9478,
+    "longitud": -65.3566
+  },
+  {
+    "id": 24,
+    "nombre": "Ciudad Autónoma de Buenos Aires",
+    "latitud": -34.6037,
+    "longitud": -58.4450
+  }
+]
