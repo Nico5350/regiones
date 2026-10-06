@@ -1,32 +1,24 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
-import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
-import modelo.Datos;
-import modelo.Grafo;
 import modelo.Provincia;
-
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VistaPrincipal {
 
@@ -104,9 +96,6 @@ public class VistaPrincipal {
 
 		Coordinate coordinate = new Coordinate(-39.84228602074339, -66.62109375);
 		mapa.setDisplayPosition(coordinate, 4);
-
-		Grafo grafo = Datos.crearGrafo();
-		List<Provincia> provincias = Datos.crearProvincias();
 
 		/*
 		 * for (int i = 0; i < provincias.size(); i++) { Provincia provincia =
