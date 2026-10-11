@@ -1,43 +1,29 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.*;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SwingConstants;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingUtilities;
-
 import modelo.Arista;
+import modelo.Provincia;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-
-import modelo.Provincia;
 import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 import presentador.Presentador;
 
-/** Ventana de prueba con el mapa y un panel lateral de opciones. */
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
 public class PruebaVista {
     private static final Color FONDO = new Color(245, 247, 250);
     private static final Color SIDEBAR = new Color(30, 41, 59);
     private static final Color ACENTO = new Color(37, 99, 235);
 
-    private Presentador presentador;
-    private JPanel frame;
     private final JMapViewer mapa;
     private final JSpinner cantidadRegiones;
     private final JLabel estado;
+    private Presentador presentador;
+    private JPanel frame;
 
     public PruebaVista() {
         frame = new JPanel(new BorderLayout());
@@ -53,6 +39,10 @@ public class PruebaVista {
 
         frame.add(crearSidebar(), BorderLayout.WEST);
         frame.add(crearPanelMapa(), BorderLayout.CENTER);
+    }
+
+    static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new PruebaVista().setVisible());
     }
 
     public void setPresentador(Presentador presentador) {
@@ -98,11 +88,6 @@ public class PruebaVista {
             }
         });
         opciones.add(disenar);
-
-        JButton verConexiones = crearBoton("Mostrar conexiones", new Color(71, 85, 105), Color.WHITE);
-        verConexiones.addActionListener(e -> estado.setText("Conexiones visibles en el mapa"));
-        opciones.add(verConexiones);
-
 
         opciones.add(crearBotonLimpiar());
 
@@ -203,10 +188,6 @@ public class PruebaVista {
             MapPolygon linea = new MapPolygonImpl(listaCoordenadas);
             mapa.addMapPolygon(linea);
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new PruebaVista().setVisible());
     }
 
     public void dibujarRegiones(List<Set<Provincia>> regiones) {
