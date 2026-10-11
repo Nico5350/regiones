@@ -4,7 +4,7 @@ import vista.PruebaVista;
 import java.awt.*;
 import java.io.IOException;
 
-public class DiseñoRegiones {
+public class DisenoRegiones {
     static void main(String[] args) {
         EventQueue.invokeLater(() -> {
 
