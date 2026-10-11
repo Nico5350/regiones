@@ -21,6 +21,9 @@ public class PruebaVista {
 
     private final JMapViewer mapa;
     private final JSpinner cantidadRegiones;
+    private final JComboBox<Provincia> provinciaOrigen;
+    private final JComboBox<Provincia> provinciaDestino;
+    private final JSpinner nuevoPeso;
     private final JLabel estado;
     private Presentador presentador;
     private JPanel frame;
@@ -35,6 +38,9 @@ public class PruebaVista {
         mapa.setDisplayPosition(new Coordinate(-39.84228602074339, -66.62109375), 4);
 
         cantidadRegiones = new JSpinner(new SpinnerNumberModel(3, 1, 24, 1));
+        provinciaOrigen = new JComboBox<>();
+        provinciaDestino = new JComboBox<>();
+        nuevoPeso = new JSpinner(new SpinnerNumberModel(500.0, 0.0, 20000.0, 10.0));
         estado = new JLabel("Listo para diseñar regiones");
 
         frame.add(crearSidebar(), BorderLayout.WEST);
@@ -47,6 +53,28 @@ public class PruebaVista {
 
     public void setPresentador(Presentador presentador) {
         this.presentador = presentador;
+    }
+
+    private void actualizarPesoArista() {
+        if (presentador == null) {
+            estado.setText("La aplicación no está inicializada");
+            return;
+        }
+
+        Provincia origen = (Provincia) provinciaOrigen.getSelectedItem();
+        Provincia destino = (Provincia) provinciaDestino.getSelectedItem();
+        if (origen == null || destino == null) {
+            estado.setText("Seleccioná las dos provincias");
+            return;
+        }
+
+        try {
+            presentador.actualizarPesoArista(origen.getId(), destino.getId(),
+                    ((Number) nuevoPeso.getValue()).doubleValue());
+            estado.setText("Peso actualizado: " + origen.getNombre() + " – " + destino.getNombre());
+        } catch (IllegalArgumentException | IllegalStateException ex) {
+            estado.setText(ex.getMessage());
+        }
     }
 
     private JPanel crearSidebar() {
@@ -88,6 +116,30 @@ public class PruebaVista {
             }
         });
         opciones.add(disenar);
+
+        JLabel etiquetaArista = new JLabel("Cambiar peso de una arista");
+        etiquetaArista.setForeground(Color.WHITE);
+        etiquetaArista.setFont(new Font("SansSerif", Font.BOLD, 14));
+        opciones.add(etiquetaArista);
+
+        JLabel etiquetaOrigen = new JLabel("Provincia de origen");
+        etiquetaOrigen.setForeground(Color.WHITE);
+        opciones.add(etiquetaOrigen);
+        opciones.add(provinciaOrigen);
+
+        JLabel etiquetaDestino = new JLabel("Provincia destino");
+        etiquetaDestino.setForeground(Color.WHITE);
+        opciones.add(etiquetaDestino);
+        opciones.add(provinciaDestino);
+
+        JLabel etiquetaPeso = new JLabel("Nuevo peso (km)");
+        etiquetaPeso.setForeground(Color.WHITE);
+        opciones.add(etiquetaPeso);
+        opciones.add(nuevoPeso);
+
+        JButton actualizarPeso = crearBoton("Actualizar arista", new Color(71, 85, 105), Color.WHITE);
+        actualizarPeso.addActionListener(e -> actualizarPesoArista());
+        opciones.add(actualizarPeso);
 
         opciones.add(crearBotonLimpiar());
 
@@ -158,9 +210,13 @@ public class PruebaVista {
 
     public void mostrarProvincias(List<Provincia> provincias) {
         mapa.removeAllMapMarkers();
+        provinciaOrigen.removeAllItems();
+        provinciaDestino.removeAllItems();
         for (Provincia provincia : provincias) {
             Coordinate coordenada = new Coordinate(provincia.getLatitud(), provincia.getLongitud());
             mapa.addMapMarker(new MapMarkerDot(provincia.getNombre(), coordenada));
+            provinciaOrigen.addItem(provincia);
+            provinciaDestino.addItem(provincia);
         }
     }
 
