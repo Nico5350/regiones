@@ -2,239 +2,239 @@
   {
     "origen": 1,
     "destino": 5,
-    "peso": 0.0
+    "peso": 585.3
   },
   {
     "origen": 1,
     "destino": 7,
-    "peso": 0.0
+    "peso": 542.8
   },
   {
     "origen": 1,
     "destino": 10,
-    "peso": 0.0
+    "peso": 437.7
   },
   {
     "origen": 1,
     "destino": 15,
-    "peso": 0.0
+    "peso": 744.6
   },
   {
     "origen": 1,
     "destino": 20,
-    "peso": 0.0
+    "peso": 664.8
   },
   {
     "origen": 1,
     "destino": 24,
-    "peso": 0.0
+    "peso": 299.4
   },
 
   {
     "origen": 2,
     "destino": 5,
-    "peso": 0.0
+    "peso": 614.7
   },
   {
     "origen": 2,
     "destino": 11,
-    "peso": 0.0
+    "peso": 240.4
   },
   {
     "origen": 2,
     "destino": 16,
-    "peso": 0.0
+    "peso": 324.5
   },
   {
     "origen": 2,
     "destino": 21,
-    "peso": 0.0
+    "peso": 367.6
   },
   {
     "origen": 2,
     "destino": 23,
-    "peso": 0.0
+    "peso": 163.3
   },
 
   {
     "origen": 3,
     "destino": 6,
-    "peso": 0.0
+    "peso": 394.8
   },
   {
     "origen": 3,
     "destino": 8,
-    "peso": 0.0
+    "peso": 185.6
   },
   {
     "origen": 3,
     "destino": 16,
-    "peso": 0.0
+    "peso": 498.0
   },
   {
     "origen": 3,
     "destino": 20,
-    "peso": 0.0
+    "peso": 480.8
   },
   {
     "origen": 3,
     "destino": 21,
-    "peso": 0.0
+    "peso": 291.1
   },
 
   {
     "origen": 4,
     "destino": 15,
-    "peso": 0.0
+    "peso": 375.5
   },
   {
     "origen": 4,
     "destino": 19,
-    "peso": 0.0
+    "peso": 569.6
   },
 
   {
     "origen": 5,
     "destino": 10,
-    "peso": 0.0
+    "peso": 574.8
   },
   {
     "origen": 5,
     "destino": 11,
-    "peso": 0.0
+    "peso": 431.9
   },
   {
     "origen": 5,
     "destino": 18,
-    "peso": 0.0
+    "peso": 274.5
   },
   {
     "origen": 5,
     "destino": 20,
-    "peso": 0.0
+    "peso": 314.2
   },
   {
     "origen": 5,
     "destino": 21,
-    "peso": 0.0
+    "peso": 487.7
   },
 
   {
     "origen": 6,
     "destino": 7,
-    "peso": 0.0
+    "peso": 373.6
   },
   {
     "origen": 6,
     "destino": 13,
-    "peso": 0.0
+    "peso": 363.9
   },
   {
     "origen": 6,
     "destino": 20,
-    "peso": 0.0
+    "peso": 372.2
   },
 
   {
     "origen": 7,
     "destino": 20,
-    "peso": 0.0
+    "peso": 227.2
   },
 
   {
     "origen": 8,
     "destino": 16,
-    "peso": 0.0
+    "peso": 551.6
   },
 
   {
     "origen": 9,
     "destino": 16,
-    "peso": 0.0
+    "peso": 118.2
   },
 
   {
     "origen": 10,
     "destino": 12,
-    "peso": 0.0
+    "peso": 396.0
   },
 
   {
     "origen": 10,
     "destino": 15,
-    "peso": 0.0
+    "peso": 416.9
   },
   {
     "origen": 10,
     "destino": 18,
-    "peso": 0.0
+    "peso": 378.9
   },
 
   {
     "origen": 11,
     "destino": 17,
-    "peso": 0.0
+    "peso": 229.3
   },
   {
     "origen": 11,
     "destino": 18,
-    "peso": 0.0
+    "peso": 485.0
   },
 
   {
     "origen": 12,
     "destino": 14,
-    "peso": 0.0
+    "peso": 496.1
   },
   {
     "origen": 12,
     "destino": 17,
-    "peso": 0.0
+    "peso": 419.9
   },
   {
     "origen": 12,
     "destino": 18,
-    "peso": 0.0
+    "peso": 254.4
   },
 
   {
     "origen": 14,
     "destino": 15,
-    "peso": 0.0
+    "peso": 264.6
   },
 
   {
     "origen": 16,
     "destino": 21,
-    "peso": 0.0
+    "peso": 397.2
   },
   {
     "origen": 16,
     "destino": 23,
-    "peso": 0.0
+    "peso": 242.0
   },
 
   {
     "origen": 17,
     "destino": 18,
-    "peso": 0.0
+    "peso": 419.0
   },
 
   {
     "origen": 20,
     "destino": 21,
-    "peso": 0.0
+    "peso": 394.5
   },
 
   {
     "origen": 21,
     "destino": 23,
-    "peso": 0.0
+    "peso": 227.5
   },
   
   {
     "origen": 19,
     "destino": 22,
-    "peso": 0.0
+    "peso": 645.5
   }
 ]
